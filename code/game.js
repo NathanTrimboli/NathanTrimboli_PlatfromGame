@@ -599,8 +599,8 @@ function runGame(plans, Display) {
         startLevel(n);
       }
 	  else if (n < plans.length - 1){
-		levelNum = n;
-        startLevel(n + 1);
+		levelNum = n + 1;
+        	startLevel(n + 1);
 		console.log(n);
 		console.log(levelNum);
 		gravity = 60;
