@@ -611,5 +611,5 @@ function runGame(plans, Display) {
         console.log("restart");
     });
   }
-  startLevel(0);
+  startLevel(1);
 }
