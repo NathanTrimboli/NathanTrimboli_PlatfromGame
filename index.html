@@ -1,11 +1,19 @@
-<!doctype html>
-<script src="code/game.js"></script>
-<script src="code/game_levels.js"></script>
-<link rel="stylesheet" href="css/game.css">
-
-<body>
-  <script>
-	//http://eloquentjavascript.net/15_game.html
-    runGame(GAME_LEVELS, DOMDisplay);
-  </script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Sheepish: HTML Edition</title>
+		
+	</head>
+	<link rel="stylesheet" href="css/game.css">
+	<body>
+	
+	<div id="foxtail"></div>
+	<canvas id="canvas2" style="position: absolute; z-index: 1;"></canvas>
+	<canvas id="canvas"  style="position: absolute; z-index: 2;"></canvas>
+	<canvas id="canvas3" style="position: absolute; z-index: 0;"></canvas>
+	
+	<script src="js/game.js"></script>
+	
+	</body>
+</html>
