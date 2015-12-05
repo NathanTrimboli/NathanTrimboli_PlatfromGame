@@ -1,4 +1,4 @@
-	
+	//http://eloquentjavascript.net/16_canvas.html
 	
 	// Create the canvas areas
 	//Game Play Area
@@ -9,16 +9,25 @@
 	canvas.style.left  = 100+'px';
 	canvas.style.top  = 100+'px';
 	
-	//Outer Game Box Interface
+	//Outer Game Box Interface and Sky
 	var canvas2 = document.getElementById('canvas2');
 	var ctx2 = canvas2.getContext('2d');
 	var ctx3= canvas2.getContext('2d');
+	var ctx4= canvas2.getContext('2d');
 	canvas2.width = window.innerWidth;
 	canvas2.height = window.innerHeight;
-	ctx3.fillStyle = "SaddleBrown";
+	//Outermost Brown
+	ctx3.fillStyle = "#5C3317";
 	ctx3.fillRect(80,80,808,1066);
-	ctx2.fillStyle = "Sienna";
+	//Inner Brown
+	ctx2.fillStyle = "SaddleBrown";
 	ctx2.fillRect(90,90,788,1046);
+	//Sky
+	var grd = ctx4.createLinearGradient(0,0,0,200);
+	grd.addColorStop(0,"#0000FF ");
+	grd.addColorStop(1,"#00BFFF");
+	ctx4.fillStyle = grd;
+	ctx4.fillRect(100,100,768,115);
 	
 	canvas2.style.left  = 0+'px';
 	canvas2.style.top  = 0+'px';
@@ -275,11 +284,22 @@
 		}
 
 		// Score
-		ctx.fillStyle = "rgb(250, 250, 250)";
-		ctx.font = "24px Helvetica";
+		ctx.fillStyle = "#5C3317";
+		ctx.font = "30px AR Christy";
+		ctx.fontWeight = "1000";
+		ctx.textAlign = "center";
+		ctx.textBaseline = "top";
+		ctx.fillText("BAH-BAH Points: " + sheepsCaught, 195, 157);
+		
+		// Level
+		var season = ['Spring','Fall','Winter'];
+		var s = 0;
+		ctx.fillStyle = "#5C3317";
+		ctx.font = "30px AR Christy";
+		ctx.fontWeight = "1000";
 		ctx.textAlign = "left";
 		ctx.textBaseline = "top";
-		ctx.fillText("Goblins caught: " + sheepsCaught, 32, 32);
+		ctx.fillText("Season: " + season[s], 490, 157);
 	};
 
 	// The main game loop
