@@ -33,6 +33,13 @@
 	canvas2.style.left  = 0+'px';
 	canvas2.style.top  = 0+'px';
 	
+	//Sky
+	var grd = ctx4.createLinearGradient(0,0,0,200);
+	grd.addColorStop(0,"#0000FF ");
+	grd.addColorStop(1,"#00BFFF");
+	ctx4.fillStyle = grd;
+	ctx4.fillRect(100,100,768,115);
+	
 	//Sun Timer
 	ctx5.fillStyle = "yellow";
 	var radius = 50;
@@ -86,19 +93,25 @@
 	wolfImage.src = "images/wolf/WolfR1.png";
 	
 
-
-	
 // ***************************************Game objects Stats
+	//Dog
 	var dog = {
 		speed: 256
 	};
+	//Sheep
 	var sheep = {
 		speed: 150
 	};
+	var sx = 150;
+	var sy = 150;
+	//Wolf
 	var wolf = {
 		speed: 120
 	};
+	var wx = 120;
+	var wy = 120;
 	
+	var ScoreKeep;
 	var sheepsCaught = 0;
 	var hitCount = 0;
 
@@ -131,6 +144,7 @@ var reset = function () {
 	if (sheepsCaught == 500){
 		gameLevel += 1;
 		first = true;
+		wolfFirst = true;
 		if (gameLevel == 6){
 			winLose = true;
 		}
@@ -162,13 +176,7 @@ var reset = function () {
 	}
 // ***************************************Level Screens CONTROL #3 / GAME LEVEL #3-5
 	if (!menuScreen){
-		//Sky
-		var grd = ctx4.createLinearGradient(0,0,0,200);
-		grd.addColorStop(0,"#0000FF ");
-		grd.addColorStop(1,"#00BFFF");
-		ctx4.fillStyle = grd;
-		ctx4.fillRect(100,100,768,115);
-	
+		
 		controlSet = 3;
 		if (first){
 			//Level Spring
@@ -233,23 +241,30 @@ var reset = function () {
 					// Throw the sheep somewhere on the screen randomly
 					sheep.x = 30 + Math.floor(Math.random() * (canvas.width - 80));
 					sheep.y = 220 + Math.floor(Math.random() * (canvas.height - 300));
-					console.log(sheep.y);
+					console.log(sheep.y + ' :Sheep Y Cord' + sheep.x + ' :Sheep X Cord');
 					var sheepX = Math.floor(Math.random() * (2));
-					console.log(sheepX + ' :sheepX');
+					var sheepY = Math.floor(Math.random() * (2));
+					console.log(sheepX + ' :sheepX' + sheepY + ' :sheepY');
 					sheepImage.src = "images/sheep/SheepR1.png";
 					if (sheepX == 0){
 						sheep.speed = -sheep.speed;
 						sheepImage.src = "images/sheep/SheepL1.png";
-					}	
+					}
 				}
+				if (first){
+					wolf.x = -100;
+					wolf.y = -100;
+				}
+				
 				if(sheepsCaught == 100){
 					if (wolfFirst){
 						// Throw the wolf somewhere on the screen randomly
 						wolf.x = 30 + Math.floor(Math.random() * (canvas.width - 80));
 						wolf.y = 220 + Math.floor(Math.random() * (canvas.height - 300));
-						console.log(wolf.y);
+						console.log(wolf.y + ' :wolf Y Cord' + wolf.x + ' :wolf X Cord');
 						var wolfX = Math.floor(Math.random() * (2));
-						console.log(wolfX + ' :wolfX');
+						var wolfY = Math.floor(Math.random() * (2));
+						console.log(wolfX + ' :wolfX' + wolfY + ' :wolfY');
 						wolfImage.src = "images/wolf/WolfR1.png";
 						if (wolfX == 0){
 							wolf.speed = -wolf.speed;
@@ -258,6 +273,7 @@ var reset = function () {
 						wolfFirst = false;
 					}
 				}
+				
 				//}
 			//}
 			
@@ -410,19 +426,30 @@ var reset = function () {
 	
 // ***************************************CHARACTER MOVEMENT PROPERTIES LOOP
 		//sheep movemenet
-		//Prevent right out ouf bounds
+		//Prevent Right out ouf bounds
 		if (sheep.x>=rBounds){
-			sheep.speed = -sheep.speed;
-			sheep.x = (sheep.x - 1);
+			sx = -sx;
+			//sheep.x = (sheep.x - 1);
 			sheepImage.src = "images/sheep/SheepL1.png";
 		}
 		//Prevent Left out ouf bounds
 		if (sheep.x<=lBounds){
-			sheep.speed = -sheep.speed;
-			sheep.x = (sheep.x + 1);
+			sx = -sx;
+			//sheep.x = (sheep.x + 1);
 			sheepImage.src = "images/sheep/SheepR1.png";
 		}
-		sheep.x += sheep.speed * modifier;
+		//Prevent Top out ouf bounds
+		if (sheep.y>=uBounds){
+			sy = -sy;
+			//sheep.y = (sheep.y + 1);
+		}
+		//Prevent Bottom out ouf bounds
+		if (sheep.y<=dBounds){
+			sy = -sy;
+			//sheep.y = (sheep.y - 1);
+		}
+		sheep.x += sx * modifier;
+		sheep.y += sy * modifier;
 		
 		// Are they touching a sheep?
 		if (
@@ -432,24 +459,38 @@ var reset = function () {
 			&& sheep.y <= (dog.y + 32)
 		) {
 			//Update the points
+			if (!winLose){
 			sheepsCaught += 100;
 			reset();
+			}
+			
 		};
 		
 		//wolf movemenet
 		//Prevent right out ouf bounds
 		if (wolf.x>=rBounds){
-			wolf.speed = -wolf.speed;
-			wolf.x = (wolf.x - 1);
+			wx = -wx;
+			//wolf.x = (wolf.x - 1);
 			wolfImage.src = "images/wolf/WolfL1.png";
 		}
 		//Prevent Left out ouf bounds
 		if (wolf.x<=lBounds){
-			wolf.speed = -wolf.speed;
-			wolf.x = (wolf.x + 1);
+			wx = -wx;
+			//wolf.x = (wolf.x + 1);
 			wolfImage.src = "images/wolf/WolfR1.png";
 		}
-		wolf.x += wolf.speed * modifier;
+		//Prevent Top out ouf bounds
+		if (wolf.y>=uBounds){
+			wy = -wy;
+			//wolf.y = (wolf.y + 1);
+		}
+		//Prevent Bottom out ouf bounds
+		if (wolf.y<=dBounds){
+			wy = -wy;
+			//wolf.y = (wolf.y - 1);
+		}
+		wolf.x += wx * modifier;
+		wolf.y += wy * modifier;
 		
 		// Are they touching a wolf?
 		if (
@@ -459,11 +500,15 @@ var reset = function () {
 			&& wolf.y <= (dog.y + 32)
 		) {
 			//Life counter
-			if (hitCount < 3){
-				hitCount++;
-				wolfDog = true
-			} 
-			reset();
+			if (!winLose){
+				if (hitCount < 3){
+					hitCount++;
+					console.log('OUCH! Life = ' + (3-hitCount));
+					wolfDog = true
+				} 
+				reset();
+			}
+			
 		};
 		
 		//Did a wolf touch a sheep?
@@ -474,10 +519,14 @@ var reset = function () {
 			&& wolf.y <= (sheep.y + 32)
 		) {
 			//Life counter
-			if (hitCount < 3){
-				hitCount++;
-			} 
-			reset();
+			if (!winLose){
+				if (hitCount < 3){
+					hitCount++;
+					console.log('OUCH! Life = ' + (3-hitCount));
+				} 
+				reset();
+			}
+			
 		};
 		
 		/*
@@ -519,6 +568,7 @@ var reset = function () {
 				}
 				if (wolfReady) {
 					ctx.drawImage(wolfImage, wolf.x, wolf.y);
+					console.log('dog ready');
 				}
 				
 				// Score
@@ -534,7 +584,7 @@ var reset = function () {
 				if (sheepsCaught > 999){
 					xTitle = 65;
 				}
-				ctx.fillText("BAH-BAH Points: " + sheepsCaught, xTitle, 162);
+				ctx.fillText("BAH-BAH Points: " + sheepsCaught, xTitle, 158);
 				
 				// Lives
 				var lives = ['O O O','O O X','O X X','X X X'];
@@ -543,7 +593,7 @@ var reset = function () {
 				ctx.fontWeight = "1000";
 				ctx.textAlign = "left";
 				ctx.textBaseline = "top";
-				ctx.fillText("Lives: " + lives[hitCount], 490, 162);
+				ctx.fillText("Lives: " + lives[hitCount], 490, 158);
 			}
 		}
 	};
