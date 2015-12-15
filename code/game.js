@@ -433,10 +433,10 @@ var reset = function () {
 						var wolfX = Math.floor(Math.random() * (2));
 						var wolfY = Math.floor(Math.random() * (2));
 						console.log(wolfX + ' :wolfX' + wolfY + ' :wolfY');
-						wolfImage.src = "images/wolf/WolfR1.png";
+						wolfImage.src = "http://i.imgur.com/uRFNZUM.png";
 						if (wolfX == 0){
 							wolf.speed = -wolf.speed;
-							wolfImage.src = "images/wolf/WolfL1.png";
+							wolfImage.src = "http://i.imgur.com/qyT4MmW.png";
 						}
 						wolfFirst = false;
 					}
@@ -465,10 +465,10 @@ var reset = function () {
 						var wolfX = Math.floor(Math.random() * (2));
 						var wolfY = Math.floor(Math.random() * (2));
 						console.log(wolfX + ' :wolfX' + wolfY + ' :wolfY');
-						wolfImage.src = "images/wolf/WolfR1.png";
+						wolfImage.src = "http://i.imgur.com/uRFNZUM.png";
 						if (wolfX == 0){
 							wolf.speed = -wolf.speed;
-							wolfImage.src = "images/wolf/WolfL1.png";
+							wolfImage.src = "http://i.imgur.com/qyT4MmW.png";
 						}
 						wolfFirst = false;
 					}
@@ -496,10 +496,10 @@ var reset = function () {
 						var wolfX = Math.floor(Math.random() * (2));
 						var wolfY = Math.floor(Math.random() * (2));
 						console.log(wolfX + ' :wolfX' + wolfY + ' :wolfY');
-						wolfImage.src = "images/wolf/WolfR1.png";
+						wolfImage.src = "http://i.imgur.com/uRFNZUM.png";
 						if (wolfX == 0){
 							wolf.speed = -wolf.speed;
-							wolfImage.src = "images/wolf/WolfL1.png";
+							wolfImage.src = "http://i.imgur.com/qyT4MmW.png";
 						}
 						// Throw the wolf2 somewhere on the screen randomly
 						wolf2.x = 30 + Math.floor(Math.random() * (canvas.width - 90));
@@ -508,10 +508,10 @@ var reset = function () {
 						var wolfX2 = Math.floor(Math.random() * (2));
 						var wolfY2 = Math.floor(Math.random() * (2));
 						console.log(wolfX2 + ' :wolfX2' + wolfY2 + ' :wolfY2');
-						wolfImage.src = "images/wolf/WolfR1.png";
+							wolfImage.src = "http://i.imgur.com/uRFNZUM.png";
 						if (wolfX2 == 0){
 							wolf2.speed = -wolf2.speed;
-							wolfImage.src = "images/wolf/WolfL1.png";
+							wolfImage.src = "http://i.imgur.com/qyT4MmW.png";
 						}
 						wolfFirst = false;
 					}
@@ -879,12 +879,12 @@ var update = function (modifier) {
 			//Prevent right out ouf bounds
 			if (wolf.x>=rBounds){
 				wx = -wx;
-				wolfImage.src = "images/wolf/WolfL1.png";
+				wolfImage.src = "http://i.imgur.com/uRFNZUM.png";
 			}
 			//Prevent Left out ouf bounds
 			if (wolf.x<=lBounds){
 				wx = -wx;
-				wolfImage.src = "images/wolf/WolfR1.png";
+				wolfImage.src = "http://i.imgur.com/qyT4MmW.png";
 			}
 			//Prevent Top out ouf bounds
 			if (wolf.y>=uBounds){
@@ -998,12 +998,12 @@ var update = function (modifier) {
 			//Prevent right out ouf bounds
 			if (wolf2.x>=rBounds){
 				wx2 = -wx2;
-				wolfImage2.src = "images/wolf/WolfL1.png";
+				wolfImage2.src = "http://i.imgur.com/uRFNZUM.png";
 			}
 			//Prevent Left out ouf bounds
 			if (wolf2.x<=lBounds){
 				wx2 = -wx2;
-				wolfImage2.src = "images/wolf/WolfR1.png";
+				wolfImage2.src = "http://i.imgur.com/qyT4MmW.png";
 			}
 			//Prevent Top out ouf bounds
 			if (wolf2.y>=uBounds){
