@@ -22,39 +22,51 @@
 	}
 	
 // ***************************************Create the canvas areas
+	//var SCREEN_WIDTH = screen.width - (screen.width * .06);
+	//var SCREEN_HEIGHT = screen.height - (screen.height * .15);
 	
 	//Game Play Area
+	/*
+	//Text box screen Overlay
+	var canvas3 = document.getElementById('canvas3');
+	var ctx3= canvas3.getContext('2d');
+	canvas3.width = window.innerWidth;
+	canvas3.height = window.innerHeight;
+	*/
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	canvas.width = '768';
 	canvas.height = '1026';
-	canvas.style.left  = 100+'px';
-	canvas.style.top  = 100+'px';
-	//canvas.style.center
+	
+	//canvas.style.top  = 100+'px';
+	canvas.style.top = (window.innerHeight/2) - (canvas.height/2) +23 +'px';
+	canvas.style.left  = (window.innerWidth/2) - (canvas.width /2) +43 +'px';
 	//Outer Game Box Interface and Sky
 	var canvas2 = document.getElementById('canvas2');
 	var ctx2 = canvas2.getContext('2d');
 	var ctx3= canvas2.getContext('2d');
 	var ctx4= canvas2.getContext('2d');
 	var ctx5 = canvas2.getContext('2d');
-	canvas2.width = window.innerWidth;
-	canvas2.height = window.innerHeight;
+	canvas2.width = 900;
+	canvas2.height = 1200;
+	canvas2.style.top = (window.innerHeight/2) - (canvas2.height/2) +'px';
+	canvas2.style.left  = (window.innerWidth/2) - (canvas2.width/2) +'px';
 	//Outermost Brown
 	ctx3.fillStyle = "#5C3317";
-	ctx3.fillRect(80,80,808,1066);
+	ctx3.fillRect(90,90,808,1066);
 	//Inner Brown
 	ctx2.fillStyle = "SaddleBrown";
-	ctx2.fillRect(90,90,788,1046);
-	canvas2.style.left  = 0+'px';
-	canvas2.style.top  = 0+'px';
+	ctx2.fillRect(100,100,788,1046);
+	
 	
 	//Sky
 	var grd = ctx4.createLinearGradient(0,0,0,200);
 	grd.addColorStop(0,"#0000FF ");
 	grd.addColorStop(1,"#00BFFF");
 	ctx4.fillStyle = grd;
-	ctx4.fillRect(100,100,768,115);
+	ctx4.fillRect(110,110,768,115);
 	
+	/*
 	//Sun Timer
 	ctx5.fillStyle = "yellow";
 	var radius = 50;
@@ -64,19 +76,19 @@
 	//Create circle
 	ctx5.arc(x, y, radius, 0, degreesToRadians(360), true);
 	ctx5.fill();
-	/*
-	//Text box screen Overlay
-	var canvas3 = document.getElementById('canvas3');
-	var ctx3= canvas3.getContext('2d');
-	canvas3.width = window.innerWidth;
-	canvas3.height = window.innerHeight;
-	ctx3.fillStyle = "#000000";
-	ctx3.fillRect(80,80,808,1066);
-	canvas3.style.top  = 0+'px';
-	canvas3.style.left  = 0+'px';
 	*/
+	
+
 
 	// Level Background
+	/*
+	var bg1Ready = false;
+	var bg1Image = new Image();
+	bg1Image.onload = function () {
+		bg1Ready = true;
+	};
+	bg1Image = "https://36.media.tumblr.com/792b5ea02a4465e4d5c73d70eff6b208/tumblr_nze3pbVBcg1s8r79ho1_1280.png";
+	*/
 	var bgReady = false;
 	var bgImage = new Image();
 	bgImage.onload = function () {
@@ -236,7 +248,15 @@ var detectionArea = 32;
 var reset = function () {
 	
 // ***************************************Check to see if player is moving to next level
-	if (sheepsCaught == 500){
+	/*
+	//Sky
+	grd = ctx4.createLinearGradient(0,0,0,200);
+	grd.addColorStop(0,"#0000FF ");
+	grd.addColorStop(1,"#00BFFF");
+	ctx4.fillStyle = grd;
+	ctx4.fillRect(110,110,768,115);
+	*/
+	if (sheepsCaught == 2000){
 		scoreKeep += sheepsCaught;
 		gameLevel += 1;
 		first = true;
@@ -256,18 +276,38 @@ var reset = function () {
 	if (menuScreen){
 		//Credits Page
 		if (gameLevel == 0){
-			bgImage.src = "images/levels/controls1.png";
+			bgImage.src = "http://i.imgur.com/InCmSC5.png";
 			controlSet = 0;
 		}
 		//Main Menu
 		else if (gameLevel == 1){
-			bgImage.src = "images/levels/main.png";
+			bgImage.src = "http://i.imgur.com/B1YGgTr.png";
 			winStatus = 0;
 			controlSet = 1;
 		}
 		//Rules Page 1
 		else if (gameLevel == 2){
-			bgImage.src = "images/levels/rules1.png";
+			bgImage.src = "http://i.imgur.com/N1iwNyi.png";
+			controlSet = 2;
+		}
+		//Rules Page 2
+		else if (gameLevel == 2.2){
+			bgImage.src = "http://i.imgur.com/cY1H4Vb.png";
+			controlSet = 2;
+		}
+		//Rules Page 3
+		else if (gameLevel == 2.3){
+			bgImage.src = "http://i.imgur.com/0RDQyCn.png";
+			controlSet = 2;
+		}
+		//Rules Page 4
+		else if (gameLevel == 2.4){
+			bgImage.src = "http://i.imgur.com/5FDqSmw.png";
+			controlSet = 2;
+		}
+		//Rules Page 5
+		else if (gameLevel == 2.5){
+			bgImage.src = "http://i.imgur.com/SDehzJF.png";
 			controlSet = 2;
 		}
 	}
@@ -279,21 +319,21 @@ var reset = function () {
 			//Level Spring
 			if (gameLevel == 3){
 				console.log('spring');
-				bgImage.src = "images/levels/Spring1.png";
+				bgImage.src = "images/levels/spring.png";
 				sheepsCaught = 0;
 				hitCount = 0;
 			}
 			//Level Fall
 			else if (gameLevel == 4){
 				console.log('fall');
-				bgImage.src = "images/levels/Spring1.png";
+				bgImage.src = "images/levels/spring.png";
 				sheepsCaught = 0;
 				hitCount = 0;
 			}
 			//Level Winter
 			else if (gameLevel == 5){
 				console.log('winter');
-				bgImage.src = "images/levels/Spring1.png";
+				bgImage.src = "images/levels/spring.png";
 				sheepsCaught = 0;
 				hitCount = 0;
 			}
@@ -305,13 +345,13 @@ var reset = function () {
 		//Level Win
 		if (gameLevel == 6){
 			winStatus = 1;
-			bgImage.src = "images/levels/win.png";
+			bgImage.src = "http://i.imgur.com/LEzjpdJ.png";
 			sheepsCaught = 0;
 			hitCount = 0;
 		}
 		//Level Lose
 		else if (gameLevel == 7){
-			bgImage.src = "images/levels/lose.png";
+			bgImage.src = "http://i.imgur.com/Eyfmt2O.png";
 			sheepsCaught = 0;
 			hitCount = 0;
 		}
@@ -512,28 +552,28 @@ var update = function (modifier) {
 // ***************************************CREDITS CONTROLS FOR SET 0
 	if (controlSet == 0){
 		console.log(controlSet + '&' + gameLevel);
-		// Player press right
-		if (39 in keysDown) {
+		// Player press M
+		if (77 in keysDown) { 
 			gameLevel = 1;
 			reset();
-			}
+		}
 	}
 
 // ***************************************MAIN MENU CONTROLS FOR SET 1
 	if (controlSet == 1){
 		console.log(controlSet + '&' + gameLevel);
-		// Player press left
-		if (37 in keysDown) { 
+		// Player press C
+		if (67 in keysDown) { 
 			gameLevel = 0;
 			reset();
 			}
-		// Player press right
-		if (39 in keysDown) {
+		// Player press R
+		if (82 in keysDown) {
 			gameLevel = 2;
 			reset();
 			}
-		// Player press down
-		if (38 in keysDown) { 
+		// Player press P
+		if (80 in keysDown) { 
 			gameLevel = 3;
 			menuScreen = false;
 			winLose = false;
@@ -544,21 +584,36 @@ var update = function (modifier) {
 // ***************************************RULES CONTROLS FOR SET 2
 	if (controlSet == 2){
 		console.log(controlSet + '&' + gameLevel);
-		// Player press left
-		if (37 in keysDown) { 
+		// Player press M
+		if (77 in keysDown) { 
 			gameLevel = 1;
 			reset();
-			}
-		// Player press right
-		if (39 in keysDown) {
+		}
+		// Player press 1
+		if (49 in keysDown) { 
 			gameLevel = 2;
 			reset();
-			}
-		// Player press down
-		if (40 in keysDown) { 
-			gameLevel = 1;
+		}
+		// Player press 2
+		if (50 in keysDown) { 
+			gameLevel = 2.2;
 			reset();
-			}
+		}
+		// Player press 3
+		if (51 in keysDown) { 
+			gameLevel = 2.3;
+			reset();
+		}
+		// Player press 4
+		if (52 in keysDown) { 
+			gameLevel = 2.4;
+			reset();
+		}
+		if (53 in keysDown) { 
+		// Player press 5
+			gameLevel = 2.5;
+			reset();
+		}
 	}
 
 // ***************************************GAME PLAY CONTROLS FOR SET 3
@@ -654,8 +709,8 @@ var update = function (modifier) {
 // ***************************************WIN LOSE CONTROLS FOR SET 4
 	if (controlSet == 4){
 		//console.log(controlSet + '&' + gameLevel);
-		// Player press down
-		if (40 in keysDown) { 
+		// Player press M
+		if (77 in keysDown) { 
 			gameLevel = 1;
 			menuScreen = true;
 			winLose = false;
@@ -1056,6 +1111,10 @@ var update = function (modifier) {
 
 //  ***************************************Draw everything
 	var render = function () {
+		/*
+		if (bg1Ready) {
+			ctx3.drawImage(bg1Image, 0, 0);
+		}*/
 		if (bgReady) {
 			ctx.drawImage(bgImage, 0, 0);
 		}
@@ -1104,6 +1163,7 @@ var update = function (modifier) {
 				ctx.textBaseline = "top";
 				ctx.fillText("Lives: " + lives[hitCount], 470, 158);
 			}
+			/*
 			if (winLose){
 				if(winStatus){
 					// Final Score
@@ -1115,6 +1175,7 @@ var update = function (modifier) {
 					ctx.fillText('Score: ' + scoreKeep, (canvas.width / 3), (canvas.height / 3));
 				}
 			}
+			*/
 		}
 	};
 
@@ -1129,10 +1190,21 @@ var update = function (modifier) {
 		render();
 
 		then = now;
+		
+		window.addEventListener('resize', resizeCanvas, false);
+        window.addEventListener('orientationchange', resizeCanvas, false);
+        resizeCanvas();
 
 		// Request to do this again ASAP
 		requestAnimationFrame(main);
 	};
+	var timer;
+	timer = setInterval(resizeCanvas, 20);
+	
+	function resizeCanvas() {
+		SCREEN_WIDTH = window.innerWidth;
+		SCREEN_HEIGHT = window.innerHeight;
+	}
 
 //  ***************************************Cross-browser support for requestAnimationFrame
 	var w = window;
