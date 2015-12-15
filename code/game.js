@@ -326,14 +326,14 @@ var reset = function () {
 			//Level Fall
 			else if (gameLevel == 4){
 				console.log('fall');
-				bgImage.src = "images/levels/spring.png";
+				bgImage.src = "http://i.imgur.com/6LsOsis.png";
 				sheepsCaught = 0;
 				hitCount = 0;
 			}
 			//Level Winter
 			else if (gameLevel == 5){
 				console.log('winter');
-				bgImage.src = "images/levels/spring.png";
+				bgImage.src = "http://i.imgur.com/CKLpZ8a.png";
 				sheepsCaught = 0;
 				hitCount = 0;
 			}
