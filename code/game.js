@@ -133,7 +133,7 @@
 	wolfImage.onload = function () {
 		wolfReady = true;
 	};
-	wolfImage.src = "images/wolf/WolfR1.png";
+	wolfImage.src = "http://i.imgur.com/uRFNZUM.png";
 	
 	// wolf2 image
 	var wolfReady2 = false;
@@ -141,7 +141,7 @@
 	wolfImage2.onload = function () {
 		wolfReady2 = true;
 	};
-	wolfImage2.src = "images/wolf/WolfR1.png";
+	wolfImage2.src = "http://i.imgur.com/uRFNZUM.png";
 
 // ***************************************Game objects Stats
 	//Dog
@@ -879,12 +879,12 @@ var update = function (modifier) {
 			//Prevent right out ouf bounds
 			if (wolf.x>=rBounds){
 				wx = -wx;
-				wolfImage.src = "http://i.imgur.com/uRFNZUM.png";
+				wolfImage.src = "http://i.imgur.com/qyT4MmW.png";
 			}
 			//Prevent Left out ouf bounds
 			if (wolf.x<=lBounds){
 				wx = -wx;
-				wolfImage.src = "http://i.imgur.com/qyT4MmW.png";
+				wolfImage.src = "http://i.imgur.com/uRFNZUM.png";
 			}
 			//Prevent Top out ouf bounds
 			if (wolf.y>=uBounds){
